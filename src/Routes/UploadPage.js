@@ -34,10 +34,8 @@ export default function UploadPage() {
         const {target: {name, value}} = event;
         if(name === "Category"){
           setCategory(value);
-          console.log(Category);
         }else if(name === "ItemName"){
           setItemName(value);
-          console.log(ItemName);
         }else if(name === "Title"){
           setTitle(value);
         }else if(name === "Main_text"){
