@@ -6,6 +6,7 @@ import MainPage from "./Routes/MainPage";
 import MyPage from "./Routes/MyPage";
 import BuyPage from "./Routes/BuyPage";
 import SellPage from "./Routes/SellPage";
+import UploadPage from "./Routes/UploadPage";
 import {
     BrowserRouter,
     HashRouter as Router,
@@ -24,6 +25,7 @@ function App() {
       <Route exact path="/MyPage" element={<MyPage />}></Route>
       <Route exact path="/SellPage" element={<SellPage />}></Route>
       <Route exact path="/BuyPage" element={<BuyPage />}></Route>
+      <Route exact path="/UploadPage" element={<UploadPage />}></Route>
     </Routes>
     </BrowserRouter>
 

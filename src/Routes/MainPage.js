@@ -5,7 +5,7 @@ import {useStore1} from "./Stores/useStore";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -20,6 +20,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -67,7 +68,7 @@ const {user, removeUser} = useStore1();
 const navigate = useNavigate();
 useEffect(() => {
     const token = cookies.token;
-    
+    console.log(user);
 },[])
 
 const UserCheck = async (token) => {
@@ -79,6 +80,10 @@ const logOutHandler = () => {
     removeUser();
     navigate('/');
 }
+
+const UploadHandler = () => {
+          navigate('/UploadPage');
+  }
 
 
 return(
@@ -129,6 +134,7 @@ return(
             </IconButton>
             <Button onClick = {logOutHandler} color="inherit">Logout</Button>
             <IconButton
+             onClick={() => UploadHandler()}
               size="large"
               edge="end"
               aria-label="account of current user"
@@ -154,7 +160,6 @@ return(
           </Box>
         </Toolbar>
       </AppBar>
-      
     </Box>
 )
 }
