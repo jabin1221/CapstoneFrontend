@@ -21,6 +21,8 @@ function DetailPage(props) {
       <br/><br/>
      
       <img src={ImgUrl} width="500px" height="500px"/>
+      <br/>
+      <b>상품설명:{setProduct.content}</b>
       </div>
       <div className="col-md-6">
       <h4 className="pt-5">상품명:{setProduct.name}</h4><br/>
@@ -28,7 +30,7 @@ function DetailPage(props) {
       <li><b>가격:{setProduct.price}</b>원<br/></li>
       <li><b>배송비:{setProduct.deliverycharge}</b><br/></li>
       <li><b>제품상태:{setProduct.condition}</b><br/></li>
-      <li><b>상품설명:{setProduct.content}</b><br/></li>
+   
     
       <Button
         variant="success"
@@ -40,6 +42,8 @@ function DetailPage(props) {
         바로구매
       </Button>
       <Button variant="warning">찜</Button>
+      <br/><br/>
+      <Button onClick={() => navigate('/SellerPage/'+setProduct.seller)}><img src="/icon/person-circle.svg"/>판매자{setProduct.seller}</Button>
     </div>
     </div>
     </div>

@@ -3,7 +3,7 @@ export default [
     {
         
         id : 1,
-        name : "Shoes",
+        name : "노트북1",
         seller:"A",
         price : 52000,
         deliverycharge:"무료",
@@ -13,7 +13,7 @@ export default [
 
     {
         id : 2,
-        name : "Bag",
+        name : "노트북2",
         seller:"B",
         price :46000,
         deliverycharge:"포함",
@@ -23,7 +23,7 @@ export default [
 
     {
         id : 3,
-        name : "Cap",
+        name : "노트북3",
         seller:"C",
         price: 12000,
         deliverycharge:"별도",
@@ -33,8 +33,8 @@ export default [
     
     {
         id : 4,
-        name : "Cardigan",
-        seller:"D",
+        name : "노트북4",
+        seller:"A",
         price : 4000,
         deliverycharge:"별도",
         condition:"중고",
@@ -43,8 +43,8 @@ export default [
 
     {
         id : 5,
-        name : "Cardigan",
-        seller:"D",
+        name : "노트북5",
+        seller:"A",
         price : 4000,
         deliverycharge:"별도",
         condition:"중고",
@@ -53,8 +53,8 @@ export default [
 
     {
         id : 6,
-        name : "Cardigan",
-        seller:"D",
+        name : "노트북6",
+        seller:"B",
         price : 4000,
         deliverycharge:"별도",
         condition:"중고",
