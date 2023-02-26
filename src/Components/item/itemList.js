@@ -1,10 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import axios from "axios"
 import Item from './item';
 import styled from 'styled-components';
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import Proudct from "../../Routes/Products.js";
-
+import {useStore1} from "../../Routes/Stores/useStore";
 import BasicMac from '../../Assets/basicMac.jpg';
 import BasicMac2 from '../../Assets/basicMac2.jpg';
 import MacM1Air from '../../Assets/macM1Air.jpg';
@@ -16,6 +18,68 @@ import { useImmer } from 'use-immer';
 const ItemList = (props) => {
   const [searched, setSearched] = useState("");
   const inputRef = useRef();
+  const {user, setUser} = useStore1();
+  const {datas, setData} = useState("");
+  const [requestResult, setRequestResult] = useState("");
+  const navigate = useNavigate();
+
+  const [inputData, setInputData] = useState([{
+    memberid: '',
+    category: '',
+    itemname: '',
+    itemid: '',
+    title: '',
+    maintext: '',
+    itemprice: ''
+  }])
+
+
+  // useEffect(async() => {
+  //   try{
+  //   // 데이터를 받아오는 동안 시간이 소요됨으로 await 로 대기
+  //     const res = await axios.get('http://localhost:8080/api/auth/UploadShow')
+  //     const responseData = res.data
+  //     console.log(responseData.data)
+  //     // 받아온 데이터로 다음 작업을 진행하기 위해 await 로 대기
+  //     // 받아온 데이터를 map 해주어 rowData 별로 _inputData 선언
+  //     const _inputData = await responseData.product && responseData.product.map((rowData) => ({
+  //                       memberid: rowData.memberid,
+  //                       category: rowData.category,
+  //                       itemname: rowData.itemname,
+  //                       itemid: rowData.itemid,
+  //                       title: rowData.title,
+  //                       maintext: rowData.maintext,
+  //                       itemprice: rowData.itemprice
+  //           })
+  //     )
+  //     // 선언된 _inputData 를 최초 선언한 inputData 에 concat 으로 추가
+  //     setInputData(inputData.concat(_inputData))
+  //     console.log(inputData)
+  //   } catch(e){
+  //     alert('글불러오기 실패');
+  //     console.error(e.message)
+  //   }
+  // },[])
+
+  useEffect(() => {
+
+    
+    axios.get('http://localhost:8080/api/auth/UploadShow')
+                    .then((response) =>{
+                      console.log(user.nickname)
+                      const responseData = response.data
+                      console.log(responseData.data)
+                      setRequestResult('Success!!');
+                    })
+                    .catch((error) => {
+                    console.log(error.message);
+                    alert('글불러오기 실패');
+                    setRequestResult('Failed!!');
+                    })
+
+},[])
+
+
 
   const [items, setItems] = useImmer({
     data: [
