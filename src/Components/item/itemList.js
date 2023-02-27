@@ -14,6 +14,7 @@ import MacM1Pro from '../../Assets/macM1Pro.jpg';
 import MacM2Air from '../../Assets/macM2Air.jpg';
 import MacM2Pro from '../../Assets/macM2Pro.jpg';
 import { useImmer } from 'use-immer';
+import { upload } from '@testing-library/user-event/dist/upload';
 
 const ItemList = (props) => {
   const [searched, setSearched] = useState("");
@@ -21,9 +22,7 @@ const ItemList = (props) => {
   const {user, setUser} = useStore1();
   const {datas, setData} = useState("");
   const [requestResult, setRequestResult] = useState("");
-  const navigate = useNavigate();
-
-  const [inputData, setInputData] = useState([{
+  const [Upload, setUpload] = useState([{
     memberid: '',
     category: '',
     itemname: '',
@@ -31,7 +30,9 @@ const ItemList = (props) => {
     title: '',
     maintext: '',
     itemprice: ''
-  }])
+  }]);
+  const navigate = useNavigate();
+
 
 
   // useEffect(async() => {
@@ -63,12 +64,18 @@ const ItemList = (props) => {
 
   useEffect(() => {
 
+   
+    
+
+
     
     axios.get('http://localhost:8080/api/auth/UploadShow')
-                    .then((response) =>{
-                      console.log(user.nickname)
-                      const responseData = response.data
-                      console.log(responseData.data)
+                    .then( (response) =>{
+                      console.log(user.nickname);
+                      const responseData = response.data;
+                      console.log(responseData.data);
+                      setUpload(responseData.data);
+                      console.log(upload);
                       setRequestResult('Success!!');
                     })
                     .catch((error) => {
@@ -82,68 +89,69 @@ const ItemList = (props) => {
 
 
   const [items, setItems] = useImmer({
-    data: [
-      {
-        id: 1,
-        name: "Macbook i7",
-        writer: "이성진 님",
-        content: "맥북 i7 판매합니다.",
-        address: "경기도 수원시",
-        price: 1100000,
-        url: BasicMac,
-        pop: 20,
-      },
-      {
-        id: 2,
-        name: "Macbook i7 16년도형",
-        writer: "조규환 님",
-        content: "맥북 i7 16년도 모델팝니다.",
-        address: "경기도 안산시",
-        price: 700000,
-        url: BasicMac2,
-        pop: 15,
-      },
-      {
-        id:3,
-        name: "Mac M1 Air",
-        writer: "이민정 님",
-        content: "맥북 M1 Air 새상품 팝니다.",
-        address: "경기도 안산시",
-        price: 1250000,
-        url: MacM1Air,
-        pop: 10,
-      },
-      {
-        id:4,
-        name: "Mac M1 Pro",
-        writer: "김성진 님",
-        content: "맥북 M1 Pro 새상품 팝니다.",
-        address: "경기도 성남시",
-        price: 1400000,
-        url: MacM1Pro,
-        pop: 100,
-      },
-      {
-        id:5,
-        name: "Mac M2 Air",
-        writer: "김수지 님",
-        content: "맥북 M2 Air 새상품 팝니다.",
-        address: "경기도 용인시",
-        price: 1200000,
-        url: MacM2Air,
-        pop: 120,
-      },
-      {
-        id:6,
-        name: "Mac M2 Pro",
-        writer: "홍길동 님",
-        content: "맥북 M2 Pro 새상품 팝니다.",
-        address: "경기도 안산시",
-        price: 1700000,
-        url: MacM2Pro,
-        pop: 200
-      }
-    ]
+    Upload
+    // data: [
+    //   {
+    //     id: 1,
+    //     name: "Macbook i7",
+    //     writer: "이성진 님",
+    //     content: "맥북 i7 판매합니다.",
+    //     address: "경기도 수원시",
+    //     price: 1100000,
+    //     url: BasicMac,
+    //     pop: 20,
+    //   },
+    //   {
+    //     id: 2,
+    //     name: "Macbook i7 16년도형",
+    //     writer: "조규환 님",
+    //     content: "맥북 i7 16년도 모델팝니다.",
+    //     address: "경기도 안산시",
+    //     price: 700000,
+    //     url: BasicMac2,
+    //     pop: 15,
+    //   },
+    //   {
+    //     id:3,
+    //     name: "Mac M1 Air",
+    //     writer: "이민정 님",
+    //     content: "맥북 M1 Air 새상품 팝니다.",
+    //     address: "경기도 안산시",
+    //     price: 1250000,
+    //     url: MacM1Air,
+    //     pop: 10,
+    //   },
+    //   {
+    //     id:4,
+    //     name: "Mac M1 Pro",
+    //     writer: "김성진 님",
+    //     content: "맥북 M1 Pro 새상품 팝니다.",
+    //     address: "경기도 성남시",
+    //     price: 1400000,
+    //     url: MacM1Pro,
+    //     pop: 100,
+    //   },
+    //   {
+    //     id:5,
+    //     name: "Mac M2 Air",
+    //     writer: "김수지 님",
+    //     content: "맥북 M2 Air 새상품 팝니다.",
+    //     address: "경기도 용인시",
+    //     price: 1200000,
+    //     url: MacM2Air,
+    //     pop: 120,
+    //   },
+    //   {
+    //     id:6,
+    //     name: "Mac M2 Pro",
+    //     writer: "홍길동 님",
+    //     content: "맥북 M2 Pro 새상품 팝니다.",
+    //     address: "경기도 안산시",
+    //     price: 1700000,
+    //     url: MacM2Pro,
+    //     pop: 200
+    //   }
+    // ]
   });
 
   const onSetSearched = e => {
@@ -157,19 +165,19 @@ const ItemList = (props) => {
       /* 인기순 */
       case "pop": 
         setItems(draft => {
-          draft.data = [...items.data].sort((a, b) => b.pop - a.pop);
+          draft.Upload = [...items.Upload].sort((a, b) => b.itemid - a.itemid);
         });
         break;
       /* 가격 낮은순 */
       case "desc":
         setItems(draft => {
-          draft.data = [...items.data].sort((a, b) => a.price - b.price);
+          draft.Upload = [...items.Upload].sort((a, b) => a.itemprice - b.itemprice);
         });
         break;
       /* 가격 높은순 */
       case "asc":
         setItems(draft => {
-          draft.data = [...items.data].sort((a, b) => b.price - a.price);
+          draft.Upload = [...items.Upload].sort((a, b) => b.itemprice - a.itemprice);
         });
         break;
       default: 
@@ -204,14 +212,14 @@ const ItemList = (props) => {
       </StyledFlex>
       <StyledWrapper>
         {searched.length > 0
-          ? items?.data.map((v, idx) => {
+          ? items?.Upload.map((v, idx) => {
               if (v.content.includes(searched)) {
                 return (
-                  <Item key={idx} data={v} searched={searched} id={v.id}/>
+                  <Item key={idx} Upload={v} searched={searched} id={v.memberid}/>
                 )
               }
             })
-          : items?.data.map(v => <Item data={v} searched={searched} id={v.id} />)
+          : items?.Upload.map(v => <Item Upload={v} searched={searched} id={v.memberid} />)
         }
       </StyledWrapper>
     </StyledContainer>

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import BasicMac from '../../Assets/basicMac.jpg';
 
 const Item = ({ data, searched , id}) => {
     const navigate = useNavigate();
@@ -14,13 +15,13 @@ const Item = ({ data, searched , id}) => {
     <StyledContainer onClick={gotoDetail}>
         
       <figure>
-        <img src={data.url} alt="items" />
+        <img src={BasicMac} alt="items" />
       </figure>
       <div>
-        <StyledContent>{data.content}</StyledContent>
-        <StyledWriter>{data.writer}</StyledWriter>
-        <StyledAddress>{data.address}</StyledAddress>
-        <StyledPrice>{data.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</StyledPrice>
+        <StyledContent>{data.title}</StyledContent>
+        <StyledWriter>{data.memberid}</StyledWriter>
+        //<StyledAddress>{data.address}</StyledAddress>
+        <StyledPrice>{data.itemprice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</StyledPrice>
       </div>
       
     </StyledContainer>
