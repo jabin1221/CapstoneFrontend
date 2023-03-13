@@ -16,10 +16,10 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import UploadPage from "./Routes/UploadPage";
 import SellerPage from "./Routes/SellerPage";
-import Sellerdata from './Routes/Sellerdata';
-import ReviewData from './Routes/Reviewdata';
+import sellerdata from './Routes/Sellerdata';
+import Reviewdata from './Routes/Reviewdata';
 import ReviewPage from'./Routes/ReviewPage';
-import ReviewAdd from './Routes/ReviewAdd';
+import CartPage from './Routes/Cart';
 import {
     BrowserRouter,
     HashRouter as Router,
@@ -31,8 +31,6 @@ import {
 function App() {
 
   let [Product] = useState(Products);
-  let [sellerdata] = useState(Sellerdata);
-  let [Reviewdata] = useState(ReviewData);
   
   return (
   <BrowserRouter>
@@ -46,10 +44,14 @@ function App() {
       <Route exact path="/ChatPage" element={<ChatPage />}></Route>
       <Route exact path="/MyChat" element ={<MyChat />}></Route>
       <Route exact path="/ReviewPage" element ={<ReviewPage Reviewdata ={ Reviewdata }/>}></Route>
-      <Route exact path="/ReviewAdd" element ={<ReviewAdd/>}></Route>
       <Route path="/DetailPage/:id" element={<DetailPage Product ={ Product }/>} />
       <Route exact path="/SellerPage/:seller" element={<SellerPage Product ={ Product } sellerdata={ sellerdata }/>}></Route>
       <Route exact path="/UploadPage" element={<UploadPage />}></Route>
+      <Route exact path="/SellerPage/:seller" element={<SellerPage Product ={ Product } sellerdata={ sellerdata }/>}></Route>
+      <Route exact path="/UploadPage" element={<UploadPage />}></Route>
+      <Route exact path="/SellerPage/:seller" element={<SellerPage Product ={ Product } sellerdata={ sellerdata }/>}></Route>
+      <Route exact path="/UploadPage" element={<UploadPage />}></Route>
+      <Route exact path="/Cart" element={<CartPage />}></Route>
     </Routes>
     </BrowserRouter>
 

@@ -14,7 +14,7 @@ export default [
     {
         id : 2,
         name : "노트북2",
-        seller:"B",
+        seller:"C",
         price :46000,
         deliverycharge:"포함",
         condition:"중고",
@@ -44,8 +44,8 @@ export default [
     {
         id : 5,
         name : "노트북5",
-        seller:"A",
-        price : 4000,
+        seller:"sh",
+        price : 400000,
         deliverycharge:"별도",
         condition:"중고",
         content:"-------------------"
@@ -54,9 +54,9 @@ export default [
     {
         id : 6,
         name : "노트북6",
-        seller:"B",
-        price : 4000,
-        deliverycharge:"별도",
+        seller:"sh",
+        price : 540000,
+        deliverycharge:"무료",
         condition:"중고",
         content:"-------------------"
     },

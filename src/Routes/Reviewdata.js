@@ -1,26 +1,33 @@
 export default [
 
     {
-        name : "AA",
+        seller:"B",
+        customer : "A",
         level:"매우 만족했습니다",
         star:" ⭐ ⭐ ⭐ ⭐ ⭐",
        
     },
+    {
+        seller:"B",
+        customer : "sh",
+        level:"별로에요",
+        star:" ⭐ ",
+       
+    },
 
     { 
-        name : "BB",
+        seller:"sh",
+        customer : "B",
         level:"만족했습니다",
         star:" ⭐ ⭐ ⭐ ⭐",
     },
 
     {
-        
-        name : "CC",
+        seller:"A",
+        customer : "sh",
         level:"보통",
         star:" ⭐ ⭐ ⭐ ",
     },
     
    
 ]
-
-   

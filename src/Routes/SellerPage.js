@@ -86,7 +86,7 @@ function SellerPage(props) {
         <div className="pt-4"> 
        
         {Product.map(function (product, id) {
-            if (product.seller == seller)
+            if (product.seller === seller)
               return <Item product={Product[id]} i={id} key={id} />;
           })}</div>
          
