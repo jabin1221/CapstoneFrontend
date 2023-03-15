@@ -40,6 +40,7 @@ export default function UploadPage() {
     
 
     const onChange = (event) =>{
+      console.log("onchange");
         const {target: {name, value}} = event;
         if(name === "Category"){
           setCategory(value);
@@ -52,6 +53,7 @@ export default function UploadPage() {
         }else if(name === "ItemPrice"){
           setItemPrice(value);
         }else if(name == "DetailCategory"){
+          console.log(value);
           setDetailCategory(value);
         }
 
@@ -123,48 +125,76 @@ export default function UploadPage() {
 
         const options = [
             {value: '', text: '--Choose an option--'},
-            {value: 'femail clothes', text: 'femail clothes'},
-            {value: 'mail clothes', text: 'mail clothes'},
-            {value: 'shoes', text: 'shoes'},
-            {value: 'bag', text: 'bag'},
-            {value: 'jewelry,watch', text: 'jewelry,watch'},
-            {value: 'fashion accessories', text: 'fashion accessories'},
-            {value: 'digital, home electronics', text: 'digital, home electronics'},
-            {value: 'sports, leisure', text: 'sports, leisure'},
-            {value: 'vehicle, motorcycle', text: 'vehicle, motorcycle'},
-            {value: 'merchandise', text: 'merchandise'},
-            {value: 'Kidult', text: 'Kidult'},
-            {value: 'art, collection, rare', text: 'art, collection, rare'},
-            {value: 'record, album, instrument', text: 'record, album, instrument'},
-            {value: 'office supplies, book, ticket', text: 'office supplies, book, ticket'},
-            {value: 'beauty', text: 'beauty'},
-            {value: 'furniture, interior design', text: 'furniture, interior design'},
-            {value: 'daily necessity, Kitchen appliances', text: 'daily necessity, Kitchen appliances'},
-            {value: 'tools', text: 'tools'},
-            {value: 'food', text: 'food'},
-            {value: 'infant, maternity supplies', text: 'infant, maternity supplies'},
-            {value: 'pet equipment', text: 'pet equipment'},
-            {value: 'free', text: 'free'},
-            {value: 'local_service', text: 'local service'},
-            {value: 'talent', text: 'talent'},
-            {value: 'roommate', text: 'roommate'},
-            {value: 'job', text: 'job'},
-            {value: 'etc', text: 'etc'},
+            {value: 'female clothes', text: '여성의류'},
+            {value: 'mail clothes', text: '남성의류'},
+            {value: 'shoes', text: '신발'},
+            {value: 'bag', text: '가방'},
+            {value: 'jewelry,watch', text: '시계/쥬얼리'},
+            {value: 'fashion accessories', text: '패션 액세서리'},
+            {value: 'digital, home electronics', text: '디지털/가전'},
+            {value: 'sports, leisure', text: '스포츠.레저'},
+            {value: 'vehicle, motorcycle', text: '차량/오토바이'},
+            {value: 'merchandise', text: '스타굿즈'},
+            {value: 'Kidult', text: '키덜트'},
+            {value: 'art, collection, rare', text: '예술/희귀/수집품'},
+            {value: 'record, album, instrument', text: '음반/악기'},
+            {value: 'office supplies, book, ticket', text: '도서/티켓/문구'},
+            {value: 'beauty', text: '뷰티/미용'},
+            {value: 'furniture, interior design', text: '가구/인테리어'},
+            {value: 'daily necessity, Kitchen appliances', text: '생활/주방용품'},
+            {value: 'tools', text: '공구/산업용품'},
+            {value: 'food', text: '식품'},
+            {value: 'infant, maternity supplies', text: '유아동/출산'},
+            {value: 'pet equipment', text: '반려동물용품'},
+            {value: 'free', text: '무료나눔'},
+            {value: 'local_service', text: '지역 서비스'},
+            {value: 'talent', text: '재능'},
+            {value: 'roommate', text: '원룸/함께살아요'},
+            {value: 'job', text: '구인구직'},
+            {value: 'etc', text: '기타'},
           ];
 
           const femail_clothes = [
-            {value: 'padded_coat_jacket', text: '패딩/점퍼'},
-            {value: 'coat', text: '코트'},
-            {value: 'sweatshirt', text: '맨투맨'},
-            {value: 'hoodie', text: '후디티/후드집업'},
-            {value: 't_shirt', text: '티셔츠'},
+            {value: 'f_padded_coat_jacket', text: '패딩/점퍼'},
+            {value: 'f_coat', text: '코트'},
+            {value: 'f_sweatshirt', text: '맨투맨'},
+            {value: 'f_hoodie', text: '후디티/후드집업'},
+            {value: 'f_t_shirt', text: '티셔츠'},
+            {value: 'f_blouse', text: '블라우스'},
+            {value: 'f_white_shirt', text: '셔츠'},
+            {value: 'f_pants', text: '바지'},
+            {value: 'f_jeans', text: '청바지'},
+            {value: 'f_shorts', text: '반바지'},
+            {value: 'f_skirt', text: '치마'},
+            {value: 'f_onepiece', text: '원피스'},
+            {value: 'f_cardigun', text: '가디건'},
+            {value: 'f_neet', text: '니트/스웨터'},
+            {value: 'f_jacket', text: '자켓'},
+            {value: 'f_suit', text: '정장'},
+            {value: 'f_sumpsuit', text: '점프수트'},
+            {value: 'f_vest', text: '조끼/베스트'},
+            {value: 'f_trainning', text: '트레이닝'},
+            {value: 'f_underwear_homewear', text: '언더웨어/홈훼어'},
+            {value: 'f_theme_event', text: '테마/이벤트'},
           ];
           const mail_clothes = [
-            {value: 'padded_coat_jacket', text: '패딩/점퍼'},
-            {value: 'coat', text: '코트'},
-            {value: 'sweatshirt', text: '맨투맨'},
-            {value: 'hoodie', text: '후디티/후드집업'},
-            {value: 't_shirt', text: '티셔츠'},
+            {value: 'm_padded_coat_jacket', text: '패딩/점퍼'},
+            {value: 'm_coat', text: '코트'},
+            {value: 'm_sweatshirt', text: '맨투맨'},
+            {value: 'm_hoodie', text: '후디티/후드집업'},
+            {value: 'm_t_shirt', text: '티셔츠'},
+            {value: 'm_white_shirt', text: '셔츠'},
+            {value: 'm_pants', text: '바지'},
+            {value: 'm_shirt', text: '청바지'},
+            {value: 'm_shorts', text: '반바지'},
+            {value: 'm_cardigun', text: '가디건'},
+            {value: 'm_neet', text: '니트/스웨터'},
+            {value: 'm_jacket', text: '자켓'},
+            {value: 'm_suit', text: '정장'},
+            {value: 'm_vest', text: '조끼/베스트'},
+            {value: 'm_trainning', text: '트레이닝'},
+            {value: 'm_underwear_homewear', text: '언더웨어/홈훼어'},
+            {value: 'm_theme_event', text: '테마/이벤트'},
           ];
           const shoes = [
             {value: 'sneakers', text: '스니커즈'},
@@ -186,6 +216,10 @@ export default function UploadPage() {
             {value: 'hat', text: '모자'},
             {value: 'muffler_gloves', text: '목도리/장갑'},
             {value: 'scarf_necktie', text: '스카프/넥타이'},
+            {value: 'glasses', text: '안경/선글라스'},
+            {value: 'socks_stocking', text: '양말/스타킹'},
+            {value: 'umbrella_parasol', text: '우산/양산'},
+            {value: 'etc_fashion_accessories', text: '기타엑세서리'},
           ];
           const digital_home_electronics = [
             {value: 'mobile', text: '모바일'},
@@ -193,6 +227,8 @@ export default function UploadPage() {
             {value: 'audio_video_related_device', text: '오디오/영상/관련기기'},
             {value: 'pc_laptop', text: 'pc/노트북'},
             {value: 'game_title', text: '게임/타이틀'},
+            {value: 'camera', text: '카메라/DSLR'},
+            {value: 'pc_part', text: 'pc부품/저장장치'},
           ];
           const sports_leisure = [
             {value: 'mobile', text: '골프'},
@@ -418,7 +454,7 @@ export default function UploadPage() {
           if(type) {
             console.log();
             detailoptions = type.map(option => (
-              <option key={option.value} value={option.value}>
+              <option key={option.value} Value={option.value}>
                   {option.text}
               </option>
               ))
@@ -447,7 +483,7 @@ export default function UploadPage() {
                 </select>
             </div>
             <div>
-              <select value={DetailCategory} onChange={onchange} name = "DetailCategory">
+              <select value={DetailCategory} onChange={e=>{onChange(e)}} name = "DetailCategory">
               {detailoptions}
               </select>
             </div>
