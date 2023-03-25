@@ -40,7 +40,7 @@
   .nav {
     display: inline-block;
     margin: 5rem auto 0;
-    background: #BCFF66;
+    background: #a7d5f4;
     text-align: left;
   }
   .nav a {
@@ -61,7 +61,7 @@
     position: relative;
   }
   .nav__menu-item:hover {
-    background-color: #23a207;
+    background-color: #0089e5;
     color: white;
   }
   .nav__menu-item:hover .nav__submenu {
@@ -74,9 +74,10 @@
     display: none;
     position: static;
     width: 200px;
-    background-color: #23a207;
+    background-color: #0089e5;
   }
   
   .nav__submenu-item:hover {
-    background: rgba(0, 0, 0, 0.1);
+    background: #0089e5(0, 0, 0, 0.1);
+    color: white;
   }

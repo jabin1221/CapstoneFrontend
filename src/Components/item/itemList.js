@@ -13,8 +13,7 @@ import MacM1Air from '../../Assets/macM1Air.jpg';
 import MacM1Pro from '../../Assets/macM1Pro.jpg';
 import MacM2Air from '../../Assets/macM2Air.jpg';
 import MacM2Pro from '../../Assets/macM2Pro.jpg';
-import options from '../../data/options'
-
+import options from "../../data/options";
 import { useImmer } from 'use-immer';
 import Aside from "../Aside";
 
