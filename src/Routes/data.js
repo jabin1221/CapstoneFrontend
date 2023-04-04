@@ -14,7 +14,7 @@ export default [
     {
         id : 2,
         name : "Bag",
-        seller:"B",
+        seller:"jabin",
         price :46000,
         deliverycharge:"포함",
         condition:"중고",
@@ -24,7 +24,7 @@ export default [
     {
         id : 3,
         name : "Cap",
-        seller:"C",
+        seller:"jabintest",
         price: 12000,
         deliverycharge:"별도",
         condition:"새상품",

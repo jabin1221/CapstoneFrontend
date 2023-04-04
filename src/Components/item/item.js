@@ -19,7 +19,7 @@ const Item = ({ data, searched , id}) => {
     <StyledContainer onClick={gotoDetail}>
         
       <figure>
-        <img src={data.url} alt="items"/>
+        <img src={data.url} alt="items" width="300px" height="300px"/>
       </figure>
       <div>
         <StyledContent>{data.maintext}</StyledContent>

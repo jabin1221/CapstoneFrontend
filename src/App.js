@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from "react";
 import AuthCreatePage from "./Routes/AuthCreatePage";
@@ -11,8 +10,6 @@ import ChatPage from "./Routes/ChatPage";
 import MyChat from "./Routes/MyChat";
 import DetailPage from "./Routes/DetailPage";
 import Products from "./Routes/data";
-import Layout from './Components/Layout';
-import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import UploadPage from "./Routes/UploadPage";
 import SellerPage from "./Routes/SellerPage";
@@ -28,6 +25,7 @@ import {
     Routes
   } from "react-router-dom";
   
+
 
 function App() {
 
