@@ -36,6 +36,9 @@ import local_service from "../data/local_service";
 import roommate from "../data/roommate";
 import job from "../data/job";
 import talent from "../data/talent";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 
 
@@ -86,21 +89,40 @@ export default function UploadPage() {
           setDetailCategory(value);
         }
     };
+    const [purpose, setPurpose] = React.useState('sell');
+
+  const purposeChange = (event) => {
+        setPurpose(event.target.value);
+      };
+
 
   
   
     const UploadHandler = () => {
       
       const fd = new FormData();
+
+      if (imgFile!=null){
       Object.values(imgFile).forEach((file) => fd.append("file", file));
+      }
+      else{
+        fd.append("file", null)
+      }
        fd.append("memberid", nickname);
        fd.append("category", Category);
        fd.append("itemname", ItemName);
        fd.append("itemid", 1);
        fd.append("title", Title);
        fd.append("maintext", Main_text);
-       fd.append("itemprice", ItemPrice);
+       if (ItemPrice!=""){
+        fd.append("itemprice", ItemPrice);
+        }
+        else{
+          fd.append("itemprice", "0")
+        }
+       
        fd.append("detailcategory", DetailCategory);
+       fd.append("purpose", purpose);
        
        
             axios.post('http://localhost:8080/api/load/Upload',fd ,{
@@ -115,7 +137,7 @@ export default function UploadPage() {
                         
                         
                         if(!responseData.result){
-                            alert("Upload Fail");
+                            alert(responseData.message);
                             return;
                         }
 
@@ -301,11 +323,24 @@ export default function UploadPage() {
                             type="input"
                             name="ItemPrice"
                             value={ItemPrice}
-                            placeholder=""
+                            placeholder="number please"
                             onChange={onChange}
                             
                         />
                     </Form.Group>
+                    <RadioGroup
+            row
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="female"
+            name="radio-buttons-group"
+            value={purpose}
+            onChange={purposeChange}
+            >
+               
+    <FormControlLabel value="sell" control={<Radio />} label="판매" />
+    <FormControlLabel value="purchase" control={<Radio />} label="구매" />
+    <FormControlLabel value="donate" control={<Radio />} label="무료 나눔" />
+  </RadioGroup>
 
                     
                     
