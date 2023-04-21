@@ -73,6 +73,7 @@ function DetailPage(props) {
 
   });
   const [itemDetail, setitemDetail] = useState(null);
+  
 
   useEffect(() => {
     axios
@@ -108,7 +109,7 @@ function DetailPage(props) {
         <Grid padding="0px 40px 40px 40px" >
         
         <h6> <FontAwesomeIcon icon={faMagnifyingGlass} size="2x"/> 
-        마우스 휠을 스크롤하여 원하는 위치에서 이미지를 확대해 보세요!</h6>
+        마우스 휠을 스크롤하여 원하는 위치에서 상품을 확대해 보세요!</h6>
           <TransformWrapper initialScale={1} minScale={1} maxScale={20} >
             <TransformComponent >
               <figure>
@@ -130,25 +131,24 @@ function DetailPage(props) {
           <Button variant="outlined"
             onClick={() =>
               Swal.fire({
-                title: "장바구니에 추가!",
-                text: "장바구니로 이동하시겠습니까?",
+                title: "즉시구매!!",
+                text: "즉시 구매 페이지로 이동하시겠습니까?",
                 icon: "success",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "장바구니로",
+                confirmButtonText: "구매하기",
                 cancelButtonText: "계속 쇼핑하기",
               }).then((result) => {
                 if (result.isConfirmed) {
-                  navigate("/Cart/");
+                  navigate("/Buypage/"+id);
                 }
               })
             }
           >
             <FontAwesomeIcon icon={faCartShopping} />
-            장바구니
+            즉시 구매
           </Button>
-
           <Button
             variant="outlined"
             onClick={() =>
@@ -160,12 +160,22 @@ function DetailPage(props) {
             <FontAwesomeIcon icon={faComment} />
             채팅
           </Button>
-          <Button
-            variant="outlined"
+          <Button variant="outlined"
             onClick={() =>
-              navigate(
-                "/BuyPage"
-              )
+              Swal.fire({
+                title: itemDetail && itemDetail.itemname + " 구매하기",
+                text: "다음 상품을 구매하시겠습니까??",
+                icon: "success",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "결제 페이지로",
+                cancelButtonText: "계속 쇼핑하기",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate("/PayPage/"+ setProduct.id);
+                }
+              })
             }
           >
             바로 구매

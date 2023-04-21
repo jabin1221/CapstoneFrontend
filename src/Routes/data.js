@@ -4,7 +4,7 @@ export default [
         
         id : 1,
         name : "Shoes",
-        seller:"A",
+        seller:"jabin",
         price : 52000,
         deliverycharge:"무료",
         condition:"중고",

@@ -12,7 +12,7 @@ export default [
 
     {
         
-        name : "A",
+        name : "jabin",
         opendate:50,
         visitor : 12,
         verification:"완료",
@@ -21,7 +21,7 @@ export default [
 
     {
         
-        name : "jabin",
+        name : "b",
         opendate:320,
         visitor : 20,
         verification:"완료",
