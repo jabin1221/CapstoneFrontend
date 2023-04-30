@@ -110,6 +110,7 @@ export default function UploadPage() {
        fd.append("itemprice", ItemPrice);
        fd.append("detailcategory", DetailCategory);
        fd.append("purpose", purpose);
+      
        
        
             axios.post('http://localhost:8080/api/load/Upload',fd ,{
@@ -128,7 +129,7 @@ export default function UploadPage() {
                             return;
                         }
 
-                        navigate('/mainPage');
+                        navigate('/');
                             
                       
 
@@ -224,7 +225,7 @@ export default function UploadPage() {
 
   return (
     <>
-    <ArrowBackIcon onClick={() => navigate('/MainPage')} />
+    <ArrowBackIcon onClick={() => navigate('/')} />
 
     <div><h2>게시글 작성</h2></div>
     <Box style={{borderWidth:2, borderStyle:'solid', borderColor:'#C4C4C4', borderRadius:5}}

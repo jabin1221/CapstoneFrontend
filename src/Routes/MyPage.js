@@ -8,26 +8,32 @@ import Grid from "@mui/material/Grid";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Products from "./data";
-import ReviewData from "./Reviewdata";
+import { FaStar } from "react-icons/fa";
+//import ReviewData from "./Reviewdata";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
+import styled from "styled-components";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 function MyPage(id) {
  const [cookies] = useCookies();
  const navigate = useNavigate();
   let [Product] = useState(Products);
-  let [Reviewdata] = useState(ReviewData);
   const [requestResult, setRequestResult] = useState("");
   const [inputData, setInputData] = useState([]);
+  const [reviewData, setReviewData] = useState([]);
 
 
   let nickname = "";
   if (cookies.token) {
     nickname = jwt_decode(cookies.token).sub;
+  }
+  else{
+    navigate("/");
   }
 
   const [favorData, setFavorData] = useState([]);
@@ -43,9 +49,13 @@ function MyPage(id) {
 
     console.log(itemId)
     axios.post('http://localhost:8080/api/load/delete', itemId).then(
-      window.location.replace('/MainPage')
+      window.location.replace('/')
     )
   }
+
+  
+
+  
 
 
 
@@ -85,6 +95,20 @@ function MyPage(id) {
                     
                     setRequestResult('Failed!!');
                     })
+                    const getreview = {
+                      nickname : nickname
+                    }
+                    axios.post('http://localhost:8080/api/forum/getreview', getreview)
+                    .then((response) =>{
+  
+                      setReviewData(response.data);
+                      setRequestResult('Success!!');
+                    })
+                    .catch((error) => {
+                    console.log(error.message);
+                    
+                    setRequestResult('Failed!!');
+                    })
 
 },[])
 
@@ -96,7 +120,7 @@ function MyPage(id) {
     <div className="container">
     <div className="row">
       <div className="col-md-6">
-      <ArrowBackIcon onClick={() => navigate('/MainPage')} />
+      <ArrowBackIcon onClick={() => navigate('/')} />
         <br />
         <br />
       <FontAwesomeIcon icon={faCircleUser} size="10x"/>
@@ -152,14 +176,38 @@ function MyPage(id) {
           })}
       </Tab>
       <Tab eventKey="review" title="내가 쓴 리뷰">
-      {Reviewdata.map(function (RD, id) {
-      if (nickname == RD.name)
+      {reviewData && reviewData.map(function (RD, id) {
+      
       return(
       
       <div key={id}>
-      <p>판매자:{RD.seller}</p>
-      <p>상품평:{RD.level}</p>
-      <p>별점:{RD.star}</p><br/><br/>
+      <Form>
+      <FontAwesomeIcon icon={faCircleUser} size="2x"/>
+      <ProfileForm>{RD.target}
+      
+      <p>{Array(RD.star).fill(RD.star).map((_, index) => {
+          return (
+            <FaStar
+              key={index}
+              size={10}
+              
+              color="#FFBA5A"
+              style={{
+                marginRight: 1,
+                cursor: "pointer"
+              }}
+            />
+
+          )
+        })}</p></ProfileForm></Form>
+        <Obj onClick={() => navigate('/DetailPage/' + RD.itemid)} >{RD.title}
+        <Icondiv><ArrowForwardIosIcon/></Icondiv>
+        </Obj>
+        <Comment>
+        <p>상품평:{RD.comment}</p>
+        </Comment>
+        <br/><br/>
+      
       </div>)
         
      })}
@@ -193,5 +241,31 @@ function MyPage(id) {
   );
   
 }
+
+const Form = styled.div`
+display: flex;
+  flex-direction : row;
+  flex-wrap : nowrap;
+`;
+
+const ProfileForm = styled.div`
+margin-left : 20px;
+`;
+
+const Obj = styled.div`
+display: flex;
+border:solid 1px;
+width:200px;
+`;
+
+const Icondiv = styled.div`
+margin-left : 150px;
+
+text-align: right;
+`;
+
+const Comment = styled.div`
+margin-top : 10px;
+`;
 
 export default MyPage;

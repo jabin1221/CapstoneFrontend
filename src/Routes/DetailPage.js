@@ -8,7 +8,6 @@ import {
   faHeart,
   faComment,
   faCartShopping,
-  faUser,
   faCircleCheck,
   faMagnifyingGlass,
   faShop
@@ -28,7 +27,9 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 function DetailPage(props) {
   const navigate = useNavigate();
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   let nickname = ""
   const [Follower, setFollower] = useState(false);
@@ -73,7 +74,6 @@ function DetailPage(props) {
 
   });
   const [itemDetail, setitemDetail] = useState(null);
-  
 
   useEffect(() => {
     axios
@@ -109,7 +109,7 @@ function DetailPage(props) {
         <Grid padding="0px 40px 40px 40px" >
         
         <h6> <FontAwesomeIcon icon={faMagnifyingGlass} size="2x"/> 
-        마우스 휠을 스크롤하여 원하는 위치에서 상품을 확대해 보세요!</h6>
+        마우스 휠을 스크롤하여 원하는 위치에서 이미지를 확대해 보세요!</h6>
           <TransformWrapper initialScale={1} minScale={1} maxScale={20} >
             <TransformComponent >
               <figure>
@@ -127,7 +127,8 @@ function DetailPage(props) {
           <h5>판매자: {itemDetail && itemDetail.memberid}</h5>
           <br />
           <b>가격:{itemDetail && itemDetail.itemprice}</b>원<br />
-
+          { itemDetail &&(itemDetail.memberid !== nickname && (
+       <>
           <Button variant="outlined"
             onClick={() =>
               Swal.fire({
@@ -147,8 +148,9 @@ function DetailPage(props) {
             }
           >
             <FontAwesomeIcon icon={faCartShopping} />
-            즉시 구매
+            즉시구매
           </Button>
+
           <Button
             variant="outlined"
             onClick={() =>
@@ -173,7 +175,7 @@ function DetailPage(props) {
                 cancelButtonText: "계속 쇼핑하기",
               }).then((result) => {
                 if (result.isConfirmed) {
-                  navigate("/PayPage/"+ setProduct.id);
+                  navigate("/PayPage/"+ id);
                 }
               })
             }
@@ -188,13 +190,15 @@ function DetailPage(props) {
               style={{ color: "red" }}
             />  찜
           </Button>
+          </>
+          ))}
           <br />
           <br />
 
           <p>상점 정보</p>
           <Button
             variant="outlined"
-            onClick={() => navigate("/SellerPage/" + setProduct.seller)}
+            onClick={() => navigate("/SellerPage/" + itemDetail.memberid)}
           >
             <FontAwesomeIcon icon={faShop} />{" "}
             {itemDetail && itemDetail.memberid}님 상점 바로가기
@@ -231,7 +235,7 @@ function DetailPage(props) {
         </Grid>
       </div>
       <Grid padding="0px 40px 40px 40px">
-      <Recommend />
+      {itemDetail && <Recommend id={id} category={itemDetail.category}/>}
       </Grid>
       <Grid padding="0px 40px 40px 40px">
         <h5>상품정보</h5>
