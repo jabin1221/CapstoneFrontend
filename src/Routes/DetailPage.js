@@ -205,11 +205,11 @@ function DetailPage(props) {
           </Button>
           <Button
             variant="outlined"
-            onClick={() => navigate("/SellerPage/" + setProduct.seller)}
+            onClick={() => navigate("/SellerPage/" + itemDetail.memberid)}
           >상품 더 보기</Button>
           <Button
             variant="outlined"
-            onClick={() => navigate("/SellerPage/" + setProduct.seller)}
+            onClick={() => navigate("/SellerPage/" + itemDetail.memberid)}
           >상점 후기</Button>
           <br />
           <Button
@@ -239,7 +239,7 @@ function DetailPage(props) {
       </Grid>
       <Grid padding="0px 40px 40px 40px">
         <h5>상품정보</h5>
-        <b>#카테고리 : {itemDetail && itemDetail.category}</b><br />
+        <b>#카테고리 :{itemDetail && itemDetail.category}</b><br />
         <b>#해시태그:</b>
         <br /><br />
       </Grid>

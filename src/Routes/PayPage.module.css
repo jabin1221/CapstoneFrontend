@@ -1,0 +1,43 @@
+.showItem{
+  
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        gap: 20px;
+ 
+}
+
+.PayBox{
+  border-style: solid; 
+  border-color: #e7e7e7;
+  border-radius: 10px 10px 10px 10px; 
+}
+
+.DetailButton{
+   float: right;
+   color: #777777;
+}
+.Grid{
+    padding :0px 300px 30px 300px;
+}
+
+
+.PayButton{
+    
+        background-color:red;
+        border: none;
+        padding: 15px 428px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+   
+}
+
+.price{
+        text-align: right;
+}
+
+.totalprice{
+        text-align: right;
+        color: red;
+}
