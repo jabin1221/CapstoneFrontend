@@ -9,8 +9,8 @@ import jwt_decode from "jwt-decode"
 import Form from "react-bootstrap/form";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import options from "../data/options";
-import femail_clothes from "../data/femail_clothes";
-import mail_clothes from "../data/mail_clothes";
+import female_clothes from "../data/femail_clothes";
+import male_clothes from "../data/mail_clothes";
 import shoes from "../data/shoes";
 import bag from "../data/bag";
 import jewelry_watch from "../data/jewelry_watch";
@@ -39,6 +39,8 @@ import talent from "../data/talent";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import './UploadPage.css'
+import image from "../static/image/wallpaper5.jpg";
 
 
 
@@ -155,10 +157,10 @@ export default function UploadPage() {
         }
 
 
-        if (selected === "femail clothes") {
-          type = femail_clothes;
-        } else if (selected === "mail clothes") {
-          type = mail_clothes;
+        if (selected === "female clothes") {
+          type = female_clothes;
+        } else if (selected === "male clothes") {
+          type = male_clothes;
         }else if (selected === "shoes") {
           type = shoes;
         } else if (selected === "bag") {
@@ -217,7 +219,7 @@ export default function UploadPage() {
         if(type) {
           console.log();
           detailoptions = type.map(option => (
-            <option key={option.value} Value={option.value}>
+            <option key={option.value} Value={option.value} className="option1">
                 {option.text}
             </option>
             ))
@@ -225,127 +227,141 @@ export default function UploadPage() {
 
   return (
     <>
+    <div className="uploadPage_back" style={{
+      backgroundImage:`url(${image})`,
+    backgroundAttachment: 'fixed',
+    backgroundSize: '100% 115%'
+    }}>
     <ArrowBackIcon onClick={() => navigate('/')} />
-
-    <div><h2>게시글 작성</h2></div>
-    <Box style={{borderWidth:2, borderStyle:'solid', borderColor:'#C4C4C4', borderRadius:5}}
+    <div class="form1">
+        <h1>게시글 작성</h1>
+    </div>
+    <Box style={{borderRadius:0}}
           sx={{
-            marginTop:2,
+            marginTop:0,
+            marginBottom:50,
+
             width: 600,
-            height: 700,
+            height: 800,
             mx: 'auto',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: '#FAFAD2'
+            backgroundColor: 'rgb(0, 0, 0, 0.5)'
           }}
                     >
             
-          <Form>
+          <Form
+          >
           <br></br>
-                <div class="form-outline">
+          <div className="team">
+                <span className="name">
               카테고리
-                <select class="form-control" value={Category} onChange={e=>{onChange(e); changeSelectOptionHandler(e)}} name = "Category">
+              </span>
+                <select className="option" value={Category} onChange={e=>{onChange(e); changeSelectOptionHandler(e)}} name = "Category">
                     {options.map(option => (
-                    <option key={option.value} value={option.value}>
+                    <option key={option.value} value={option.value} className="option1">
                         {option.text}
                     </option>
                     ))}
                 </select>
-                <br></br>
+            
             </div>
-            <div class="form-outline">
+            <div className="team">
+            <span className="name">
               세부 카테고리
-              <select class="form-control" value={DetailCategory} onChange={e=>{onChange(e)}} name = "DetailCategory">
+              </span>
+              <select className="option" value={DetailCategory} onChange={e=>{onChange(e)}} name = "DetailCategory">
               {detailoptions}
               </select>
-              <br></br>
             </div>
-            
-            
-              
-                    <Form.Group>
-                        <Form.Label>상품명</Form.Label>
-                        <Form.Control
-                            type="input"
-                            name="ItemName"
-                            value={ItemName}
-                            placeholder=""
-                            onChange={onChange}
-                            
-                        />
-                    </Form.Group>
 
-                    <div>
-                      <br></br>
-                    </div>
 
-                    <Form.Group>
-                        <Form.Label>제목</Form.Label>
-                        <Form.Control
-                            type="input"
-                            name="Title"
-                            value={Title}
-                            placeholder=""
-                            onChange={onChange}
-                        />
-                    </Form.Group>
-                    <div>
-                      <br></br>
-                    </div>
+            <div className="team">
+            <span className="name">
+              상품명
+              </span>
+              <input type="text" className="option" value={ItemName} placeholder="" onChange={onChange} name="ItemName">
+              </input>
+            </div>
 
-                    <div class="form-outline">
-                      설명
-                    <textarea class="form-control"
-                        rows="4"
-                        type="textarea"
-                            name="Main_text"
-                            value={Main_text}
-                            placeholder=""
-                            onChange={onChange}></textarea>
-                            <br></br>
+            <div className="team">
+            <span className="name">
+              제목
+              </span>
+              <input type="text" className="option" value={Title} placeholder="" onChange={onChange} name="Title">
+              </input>
+            </div>
 
-                    </div>
-                    <Form.Group>
-                        <Form.Label>가격</Form.Label>
-                        <Form.Control
-                            type="input"
-                            name="ItemPrice"
-                            value={ItemPrice}
-                            placeholder=""
-                            onChange={onChange}
-                            
-                        />
-                    </Form.Group>
-                    <RadioGroup
+            <div style={{display: 'block',
+        width: '100%',
+        height: '55%',}}>
+            <span style={{marginLeft: '45px',
+                          marginTop: '40px',
+                          marginBottom: '160px',
+                          width: '125px',
+                          color: 'white',
+                          fontSize: '18px',
+                          fontWeight: 700,
+            }}>
+              설명
+              </span>
+              <textarea rows="4" type="textarea" className="option" value={Main_text} placeholder="" onChange={onChange} name="Main_text" style={{textAlign:'left'}}>
+              </textarea>
+            </div>
+
+
+            <div className="team">
+            <span className="name">
+              가격
+              </span>
+              <input type="input" className="option" value={ItemPrice} placeholder="" onChange={onChange} name="ItemPrice">
+              </input>
+            </div>
+
+
+      <RadioGroup
             row
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="female"
             name="radio-buttons-group"
             value={purpose}
             onChange={purposeChange}
+            style={{color: '#FFFFFF',  position:'relative', left: '170px'}}
             >
                
-    <FormControlLabel value="sell" control={<Radio />} label="판매" />
-    <FormControlLabel value="purchase" control={<Radio />} label="구매" />
-    <FormControlLabel value="donate" control={<Radio />} label="무료 나눔" />
-  </RadioGroup>
+              <FormControlLabel value="sell" control={<Radio />} className="radio" label={
+             <Box component="div" style={{fontSize: 20,  fontWeight: 700}} >
+                판매
+              </Box>} />
+              <FormControlLabel value="purchase" control={<Radio />} className="radio"label={
+             <Box component="div" style={{fontSize: 20,  fontWeight: 700, }} >
+                구매
+              </Box>} />
+              <FormControlLabel value="donate" control={<Radio />} className="radio"label={
+             <Box component="div" style={{fontSize: 20,  fontWeight: 700, }} >
+                무료나눔
+              </Box>} />
+      </RadioGroup>
+      <br></br>
 
                     
-                    
-
-          
-            
-            <input type="file" id="file"  onChange={handleChangeFile} multiple="multiple" text="이미지 선택" />
+            <div className="team">
+            <span className="name">
+              사진첨부
+              </span>
+              <input type="file" id="file" className="option" onChange={handleChangeFile} multiple="multiple" text="이미지 선택"  style={{color: 'white'}}/>
+            </div>
           
                        
             
         
-            <Button
+            <Button className="button1"
             onClick={() => UploadHandler()}
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 1 }}
+              sx={{ mt: 2, mb: 0, ml: 30}}
+              style={{width: 110, height: 50, backgroundColor: 'black', color: 'white', fontSize: '18px', fontWeight: 700,
+            }}
             >
               글올리기
             </Button>
@@ -353,6 +369,8 @@ export default function UploadPage() {
             
             </Form>
               </Box>
+              <br></br>
+              </div>
               
               
       </>  

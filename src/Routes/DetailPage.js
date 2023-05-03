@@ -97,7 +97,6 @@ function DetailPage(props) {
     <Grid padding="0px 40px 40px 40px" max_width="950px" margin="0 auto">
       <Grid padding="0px 40px 40px 40px">
         <Header />
-        <Navbar />
       </Grid>
       <div
         style={{

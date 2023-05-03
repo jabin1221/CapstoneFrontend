@@ -17,6 +17,8 @@ import { useImmer } from "use-immer";
 import Aside from "../Aside";
 import options from '../../data/options'
 import {useStore2, useStore3, useStore4} from "../../Routes/Stores/useStore";
+import Tile from '../Tiles/Tile';
+import Tile2 from "./Tiles2/Tile2";
 
 const ItemList = (props) => {
   const [searched, setSearched] = useState("");
@@ -33,6 +35,8 @@ const ItemList = (props) => {
   const [originData, setOriginData] = useState([]);
   const {category, setCategory} = useStore3();
   const {detailcategory, setDetailcategory} = useStore4();
+
+  
   useEffect(() => {
     setItems(originData);
     
@@ -126,9 +130,17 @@ const ItemList = (props) => {
       <Aside categories={categories1} onClickCateogry={onSetSort} />
       
       <StyledContainer>
+        {/* <Button>
+      <button onClick={sellPurpose}>판매</button>
+      <button onClick={purchasePurpose}>구매</button>
+      <button onClick={donatePurpose}>무료나눔</button>
+      </Button> */}
+      <Tile />
+      <Tile2/>
+      <h1 className="text1">인기 상품</h1>
       
-        <h1>인기 상품</h1>
         <StyledWrapper>
+        
           {[...items]
             .sort((a, b) => b.view - a.view)
             .map((i) => (
@@ -266,6 +278,7 @@ const StyledSoltContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+
 `;
 
 const StyledSoltWrapper = styled.div`
@@ -284,9 +297,15 @@ const StyledContainer = styled.div`
   align-items: flex-start;
   width: 100%;
   padding: 20px 40px;
+  .text1{
+    position: relative;
+    top: 50px;
+  }
 `;
 
 const StyledWrapper = styled.div`
+  position: relative;
+  top: 60px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

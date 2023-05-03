@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
 import styled from "styled-components";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import './MyPage.css'
 
 
 function MyPage(id) {
@@ -33,7 +34,7 @@ function MyPage(id) {
     nickname = jwt_decode(cookies.token).sub;
   }
   else{
-    navigate("/");
+    navigate("/loginPage");
   }
 
   const [favorData, setFavorData] = useState([]);
@@ -117,7 +118,7 @@ function MyPage(id) {
 
   return (
     
-    <div className="container">
+    <div className="container"> 
     <div className="row">
       <div className="col-md-6">
       <ArrowBackIcon onClick={() => navigate('/')} />
@@ -152,7 +153,7 @@ function MyPage(id) {
       className="mb-3"
       justify
     >
-      <Tab eventKey="home" title="올린 상품">
+      <Tab eventKey="home" title="올린 상품" className="what?">
       {inputData.map(function (product, id) {
           const gotoDetail = () => {
             navigate('/DetailPage/' + product.itemid);
@@ -161,8 +162,8 @@ function MyPage(id) {
             if (nickname == product.memberid)
               return ( 
                 
-              <div key={id} onClick={gotoDetail}>
-              <img src={product.url} alt="items" position="absolute" width="300px" height="300px" />
+              <div key={id} onClick={gotoDetail} className="upload_price_" style={{width: "20%" , display:"inline-block"}}>
+              <img src={product.url} alt="items" position="absolute" width="200px" height="200px" />
               <p>판매자:{product.memberid}</p>
               <p>{product.itemprice}원</p>
               <Button variant="outlined" onClick={ (e) => {deleteListener(product.itemid, e)}} startIcon={<DeleteIcon />}>

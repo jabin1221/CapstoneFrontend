@@ -160,7 +160,6 @@ const MyChat = () =>{
         <>
         <Grid padding="60px 0 0 0" max_width="950px" margin="0 auto">
       <Header />
-      <Navbar />
             
                 <ArrowBackIcon onClick={() => navigate('/MainPage')} />
             <ChatForm>

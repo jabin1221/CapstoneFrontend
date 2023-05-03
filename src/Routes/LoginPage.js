@@ -10,6 +10,8 @@ import {useStore1} from "./Stores/useStore";
 import jwt_decode from "jwt-decode"
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import video from '../static/back.mp4';
+import './LoginPage.css'
 
 
 
@@ -86,9 +88,11 @@ const LoginPage = () => {
 
   return (
     <>
-    <StyledContainer>
-    <Link to="/"><h1>중고 마켓</h1></Link>
-    </StyledContainer>
+    <div>
+    <div className="overlay"></div>
+    <video src={video} autoPlay loop muted className="video"/>
+    
+    <div className="content1">
     
     <Box
           sx={{
@@ -129,16 +133,28 @@ const LoginPage = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              style={{width: 110, height: 50, backgroundColor: 'black', color: 'white', fontSize: '18px', fontWeight: 700}}
             >
               로그인
             </Button>
             
               <Grid item>
-                <Link to="/AuthCreatePage" variant="body2">
+                <Link to="/AuthCreatePage" variant="body2" style={{fontWeight: 800}}>
                   {"아이디가 없으신가요? 회원가입하기"}
                 </Link>
               </Grid>
             </Box>
+            </div>
+            
+            <div className="content2">
+            <StyledContainer>
+            <Link to="/MainPage"><span className="content3">중고 마켓</span></Link>
+            </StyledContainer>
+            </div>
+    
+            
+            
+            </div>
       </>      
   );
 
