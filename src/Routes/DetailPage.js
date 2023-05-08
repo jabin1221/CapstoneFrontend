@@ -224,7 +224,7 @@ function DetailPage(props) {
       <Grid padding="0px 40px 40px 40px">
         <h5>상품정보</h5>
         <b>#카테고리 : {itemDetail && itemDetail.category}</b><br />
-        <b>#해시태그:</b>
+        <b>#해시태그 : #{itemDetail && itemDetail.category}{" "} #{itemDetail && itemDetail.detailcategory}</b>
         <br /><br />
       </Grid>
   

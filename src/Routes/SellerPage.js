@@ -12,13 +12,17 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { FaStar } from "react-icons/fa";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+
 function SellerPage(props) {
+
   const navigate = useNavigate();
   let { seller } = useParams();
  
   const [inputData, setInputData] = useState([]);
   const [reviewData, setReviewData] = useState([]);
   const [requestResult, setRequestResult] = useState("");
+
   useEffect(() => {
 
     
@@ -68,6 +72,8 @@ function SellerPage(props) {
         </div>
         <FontAwesomeIcon icon={faShop} size="10x"/>
         <h3>{seller}님의 상점</h3> <br />
+        <button type="button" class="btn btn-link" onClick={() => navigate('/DealPage/'+seller)}>
+          {seller}님이 거래중인 상품 보기</button>
         {SellerData.map(function (SD, k) {
           if (seller == SD.name) {
             return (
@@ -102,13 +108,14 @@ function SellerPage(props) {
           navigate('/DetailPage/' + product.itemid);
       }
            if (product.memberid == seller)
-              return (        
+              return (       
               <div key={id} onClick={gotoDetail} >
+              <h5><b>{product.itemname}</b></h5>
               <img src={product.url} alt="items" position="absolute" width="300px" height="300px" />
               <p>판매자:{product.memberid}</p>
               <p>{product.itemprice}원</p>
-     
-              
+              {product.status}
+              <hr/>
               </div>
               )
               
