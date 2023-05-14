@@ -1,0 +1,43 @@
+.line {
+    border-left: thin solid #cac4c4;
+    height: 30%;
+    left: 50%;
+    position: absolute;
+}
+
+.main {
+    padding: 0px 40px 40px 40px;
+}
+
+
+.gray {
+    color: #a8a8a8;
+}
+
+.paybutton {
+    font-weight: bold;
+    color: white;
+    border: none;
+    background-color: #e33a30;
+    min-height: 50px;
+    min-width: 150px;
+
+}
+
+.chatbutton {
+    font-weight: bold;
+    color: white;
+    border: none;
+    background-color: #e69845;
+    min-height: 50px;
+    min-width: 150px;
+}
+
+.favbutton {
+    font-weight: bold;
+    color: white;
+    border: none;
+    background-color: #a8a8a8;
+    min-height: 50px;
+    min-width: 150px;
+}

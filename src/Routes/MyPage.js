@@ -17,12 +17,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import styled from "styled-components";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './MyPage.css'
-import Item from "../Components/item/item";
-
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import PortraitOutlinedIcon from '@mui/icons-material/PortraitOutlined';
 
 function MyPage(id) {
- const [cookies] = useCookies();
- const navigate = useNavigate();
+  const [cookies] = useCookies();
+  const navigate = useNavigate();
   let [Product] = useState(Products);
   const [requestResult, setRequestResult] = useState("");
   const [inputData, setInputData] = useState([]);
@@ -33,19 +35,19 @@ function MyPage(id) {
   if (cookies.token) {
     nickname = jwt_decode(cookies.token).sub;
   }
-  else{
+  else {
     navigate("/MainPage");
   }
 
   const [favorData, setFavorData] = useState([]);
 
   const deleteListener = (id, e) => {
-  
-  
+
+
 
     const itemId = {
-      itemid : id,
-      currentuser : nickname
+      itemid: id,
+      currentuser: nickname
     }
 
     console.log(itemId)
@@ -54,9 +56,9 @@ function MyPage(id) {
     )
   }
 
-  
 
-  
+
+
 
 
 
@@ -64,176 +66,176 @@ function MyPage(id) {
 
   useEffect(() => {
 
-    
+
     axios.get('http://localhost:8080/api/load/UploadShow')
-                    .then((response) =>{
-                      
-                      console.log(response.data);
-                      setInputData(response.data);
-                      console.log(inputData)
-                      setRequestResult('Success!!');
-                    })
-                    .catch((error) => {
-                    console.log(error.message);
-                    
-                    setRequestResult('Failed!!');
-                    })
+      .then((response) => {
 
-                    const itemId = {
-                    itemid : 0,
-                    nickname : nickname
-                    }
-                    axios.post('http://localhost:8080/api/load/favorRequest', itemId)
-                    .then((response) =>{
-                      
-                      console.log(response.data);
-                      setFavorData(response.data);
-                      console.log(favorData)
-                      setRequestResult('Success!!');
-                    })
-                    .catch((error) => {
-                    console.log(error.message);
-                    
-                    setRequestResult('Failed!!');
-                    })
-                    const getreview = {
-                      nickname : nickname
-                    }
-                    axios.post('http://localhost:8080/api/forum/getreview', getreview)
-                    .then((response) =>{
-  
-                      setReviewData(response.data);
-                      setRequestResult('Success!!');
-                    })
-                    .catch((error) => {
-                    console.log(error.message);
-                    
-                    setRequestResult('Failed!!');
-                    })
+        console.log(response.data);
+        setInputData(response.data);
+        console.log(inputData)
+        setRequestResult('Success!!');
+      })
+      .catch((error) => {
+        console.log(error.message);
 
-},[])
+        setRequestResult('Failed!!');
+      })
+
+    const itemId = {
+      itemid: 0,
+      nickname: nickname
+    }
+    axios.post('http://localhost:8080/api/load/favorRequest', itemId)
+      .then((response) => {
+
+        console.log(response.data);
+        setFavorData(response.data);
+        console.log(favorData)
+        setRequestResult('Success!!');
+      })
+      .catch((error) => {
+        console.log(error.message);
+
+        setRequestResult('Failed!!');
+      })
+    const getreview = {
+      nickname: nickname
+    }
+    axios.post('http://localhost:8080/api/forum/getreview', getreview)
+      .then((response) => {
+
+        setReviewData(response.data);
+        setRequestResult('Success!!');
+      })
+      .catch((error) => {
+        console.log(error.message);
+
+        setRequestResult('Failed!!');
+      })
+
+  }, [])
 
 
 
 
   return (
-    
-    <div className="container">
-    <div className="row">
-      <div className="col-md-6">
-      <ArrowBackIcon onClick={() => navigate('/MainPage')} />
-        <br />
-        <br />
-      <FontAwesomeIcon icon={faCircleUser} size="10x"/>
-      <br />
-      <p>{nickname}님의 My Page 입니다.</p>
-      <Button type="button" class="btn btn-link" onClick={() => navigate('/DealPage/' + nickname)}>
-            나의 거래내역</Button>
-      </div>
-      
-        
-              <Grid is_flex="true">
-              <b>상점오픈: 1일 전</b>
-              <br/>
-              <b>방문자:1</b>명<br/>
-              
-              <br />
-              <b>거래 수:1회</b>
-              <br/>
-              </Grid>
-             
-          
-       
-    </div>
-    
-    <Tabs
-      defaultActiveKey="profile"
-      id="justify-tab-example"
-      className="mb-3"
-      justify
-    >
-      <Tab eventKey="home" title="올린 상품">
-      {inputData.map(function (product, id) {
-          const gotoDetail = () => {
-            navigate('/DetailPage/' + product.itemid);
-        }
-        
-            if (nickname == product.memberid)
-              return ( 
-                <div key={id} onClick={gotoDetail}>
-              <img src={product.url} alt="items" position="absolute" width="300px" height="300px" />
-              <p>판매자:{product.memberid}</p>
-              <p>{product.itemprice}원</p>
-              <Button variant="outlined" onClick={ (e) => {deleteListener(product.itemid, e)}} startIcon={<DeleteIcon />}>
-             Delete
-            </Button>
-              
-            
-              
-            </div>)
-              
-          })}
-      </Tab>
-      <Tab eventKey="review" title="내가 쓴 리뷰">
-      {reviewData && reviewData.map(function (RD, id) {
-      
-      return(
-      
-      <div key={id}>
-      <Form>
-      <FontAwesomeIcon icon={faCircleUser} size="2x"/>
-      <ProfileForm>{RD.target}
-      
-      <p>{Array(RD.star).fill(RD.star).map((_, index) => {
-          return (
-            <FaStar
-              key={index}
-              size={10}
-              
-              color="#FFBA5A"
-              style={{
-                marginRight: 1,
-                cursor: "pointer"
-              }}
-            />
 
-          )
-        })}</p></ProfileForm></Form>
-        <p><Obj onClick={() => navigate('/DetailPage/' + RD.itemid)} >{RD.title}
-        <Icondiv><ArrowForwardIosIcon/></Icondiv>
-        </Obj></p>
-        <Comment>
-        <p>상품평:{RD.comment}</p>
-        </Comment>
-        <br/><br/>
-      
-      </div>)
-        
-     })}
-     
-      </Tab>
-      <Tab eventKey="heart" title="찜한 상품">
-      {favorData.map(function (product, id) {
-          const gotoDetail = () => {
-                navigate('/DetailPage/' + product.itemid);
+    <div className="container">
+
+
+
+      <ArrowBackIcon onClick={() => navigate('/MainPage')} />
+      <br />
+      <br />
+      <Grid container spacing={2} >
+        <Grid item xs={4} >
+          <Grid padding="50px 10px 0px 100px">
+            <PortraitOutlinedIcon style={{fontSize: 200,color:"#484846"}}/>
+            <Button type="button" class="btn btn-link" onClick={() => navigate('/DealPage/' + nickname)}
+            style={{color:"#767676"}}>나의 거래내역 확인하기</Button>
+          </Grid>
+
+        </Grid>
+        <Grid item xs={8} >
+          <Grid padding="50px 10px 0px 100px">
+          <h3><b>{nickname}</b>님의 My Page </h3><br/>
+            <StorefrontIcon color="primary"/> <p>상점오픈 <b>1</b>일 전</p>
+            <AccessibilityNewIcon /> <p>방문자 <b>1</b>명</p>
+            <ReceiptLongIcon color="action" /> <p>거래 수 <b>1</b>회</p>
+          </Grid>
+        </Grid>
+
+      </Grid>
+
+
+      <Tabs
+        defaultActiveKey="profile"
+        id="justify-tab-example"
+        className="mb-3"
+        justify
+      >
+        <Tab eventKey="home" title="올린 상품">
+          {inputData.map(function (product, id) {
+            const gotoDetail = () => {
+              navigate('/DetailPage/' + product.itemid);
             }
-            
-              return ( 
-              <div key={id} onClick={gotoDetail}>
-              <img src={product.url} alt="items" position="absolute" width="300px" height="300px" />
-              <p>판매자:{product.memberid}</p>
-              <p>{product.itemprice}원</p>
-              
-          </div>)
-              
+
+            if (nickname == product.memberid)
+              return (
+                <div key={id} onClick={gotoDetail}>
+                  <img src={product.url} alt="items" position="absolute" width="300px" height="300px" />
+                  <p>판매자:{product.memberid}</p>
+                  <p>{product.itemprice}원</p>
+                  <Button variant="outlined" onClick={(e) => { deleteListener(product.itemid, e) }} startIcon={<DeleteIcon />}>
+                    Delete
+                  </Button>
+
+
+
+                </div>)
+
           })}
-      </Tab>
-      
-    </Tabs>
-  </div>
+        </Tab>
+        <Tab eventKey="review" title="내가 쓴 리뷰">
+          {reviewData && reviewData.map(function (RD, id) {
+
+            return (
+
+              <div key={id}>
+                <Form>
+                  <FontAwesomeIcon icon={faCircleUser} size="2x" />
+                  <ProfileForm>{RD.target}
+
+                    <p>{Array(RD.star).fill(RD.star).map((_, index) => {
+                      return (
+                        <FaStar
+                          key={index}
+                          size={10}
+
+                          color="#FFBA5A"
+                          style={{
+                            marginRight: 1,
+                            cursor: "pointer"
+                          }}
+                        />
+
+                      )
+                    })}</p></ProfileForm></Form>
+                <p><Obj onClick={() => navigate('/DetailPage/' + RD.itemid)} >{RD.title}
+                  <Icondiv><ArrowForwardIosIcon /></Icondiv>
+                </Obj></p>
+                <Comment>
+                  <p>상품평:{RD.comment}</p>
+                </Comment>
+                <br /><br />
+
+              </div>)
+
+          })}
+
+        </Tab>
+        <Tab eventKey="heart" title="찜한 상품">
+          {favorData.map(function (product, id) {
+            const gotoDetail = () => {
+              navigate('/DetailPage/' + product.itemid);
+            }
+
+            return (
+              <div key={id} onClick={gotoDetail}>
+                <img src={product.url} alt="items" position="absolute" width="300px" height="300px" />
+                <p>판매자:{product.memberid}</p>
+                <p>{product.itemprice}원</p>
+
+              </div>)
+
+          })}
+        </Tab>
+
+      </Tabs>
+    </div>
 
   );
-  
+
 }
 
 const Form = styled.div`
