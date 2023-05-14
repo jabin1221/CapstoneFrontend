@@ -44,7 +44,6 @@ function App() {
     <Routes>
     <Route exact path="/" element={<LandingPage />}></Route>
       <Route exact path="/LoginPage" element={<LoginPage />}></Route>
-      <Route exact path="/AuthCreatePage" element={<AuthCreatePage />}></Route>
       <Route exact path="/MainPage" element={<MainPage />}></Route>
       <Route exact path="/MyPage" element={<MyPage />}></Route>
       <Route exact path="/SellPage" element={<SellPage />}></Route>

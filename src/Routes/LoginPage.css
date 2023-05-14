@@ -5,6 +5,22 @@
   object-fit: cover;
 }
 
+.close {
+  position: absolute;
+  right: 10px;
+  font-size: 30px;
+
+}
+
+.close_back {
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  width: 50%;
+  height: 4%;
+  background-color: rgb(255, 255, 255);
+}
+
 .content1 {
   position: absolute;
   top: 10px;

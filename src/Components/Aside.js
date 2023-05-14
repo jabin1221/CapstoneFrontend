@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import './Aside.css'
-import femail_clothes from "../data/femail_clothes";
-import mail_clothes from "../data/mail_clothes";
+import femail_clothes from "../data/female_clothes";
+import mail_clothes from "../data/male_clothes";
 import shoes from "../data/shoes";
 import bag from "../data/bag";
 import jewelry_watch from "../data/jewelry_watch";

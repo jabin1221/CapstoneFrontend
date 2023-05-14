@@ -34,7 +34,7 @@ function MyPage(id) {
     nickname = jwt_decode(cookies.token).sub;
   }
   else{
-    navigate("/");
+    navigate("/LoginPage");
   }
 
   const [favorData, setFavorData] = useState([]);

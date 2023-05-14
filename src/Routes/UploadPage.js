@@ -9,8 +9,8 @@ import jwt_decode from "jwt-decode"
 import Form from "react-bootstrap/form";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import options from "../data/options";
-import femail_clothes from "../data/femail_clothes";
-import mail_clothes from "../data/mail_clothes";
+import female_clothes from "../data/female_clothes";
+import male_clothes from "../data/male_clothes";
 import shoes from "../data/shoes";
 import bag from "../data/bag";
 import jewelry_watch from "../data/jewelry_watch";
@@ -157,10 +157,10 @@ export default function UploadPage() {
         }
 
 
-        if (selected === "femail clothes") {
-          type = femail_clothes;
-        } else if (selected === "mail clothes") {
-          type = mail_clothes;
+        if (selected === "female clothes") {
+          type = female_clothes;
+        } else if (selected === "male clothes") {
+          type = male_clothes;
         }else if (selected === "shoes") {
           type = shoes;
         } else if (selected === "bag") {
