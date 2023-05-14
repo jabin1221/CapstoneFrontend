@@ -150,7 +150,6 @@ const ItemList = (props) => {
       
       <StyledContainer>
       <Tile />
-      <Tile2/>
         <h1  className="text1">인기 상품</h1>
         
         <InfiniteScroll
